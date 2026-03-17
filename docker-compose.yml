@@ -1,0 +1,75 @@
+services:
+  processor:
+    image: grpcbenchmark/processor:local
+    build:
+      context: .
+      dockerfile: processor.Dockerfile
+    container_name: grpc-benchmark-processor
+    environment:
+      GRPC_ADDR: :50051
+      HTTP_ADDR: :8080
+    ports:
+      - "50051:50051"
+      - "8080:8080"
+
+  benchmarker:
+    image: grpcbenchmark/benchmarker:local
+    profiles:
+      - manual
+    build:
+      context: .
+      dockerfile: benchmarker.Dockerfile
+    container_name: grpc-benchmark-benchmarker
+    depends_on:
+      - processor
+    environment:
+      PROCESSOR_GRPC_ADDR: processor:50051
+      PROCESSOR_HTTP_URL: http://processor:8080/double
+      METRICS_ADDR: :2112
+      METRICS_GRACE_PERIOD: 30s
+      REQUEST_TIMEOUT: 20s
+      REPORTS_DIR: /reports
+      TOTAL_REQUESTS: 25000
+      WARMUP_REQUESTS: 100
+      BENCHMARK_RUNS: 5
+      CONCURRENCY: 64
+      HTTP_MAX_CONNS_PER_HOST: 64
+      SCENARIOS: medium-structured,large-structured,large-structured-headers
+    volumes:
+      - ./reports:/reports
+    ports:
+      - "2112:2112"
+
+  prometheus:
+    image: prom/prometheus:v3.5.1
+    container_name: grpc-benchmark-prometheus
+    depends_on:
+      - processor
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grpc-benchmark-grafana
+    depends_on:
+      - prometheus
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - ./observability/grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./observability/grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./observability/grafana/dashboards:/etc/grafana/dashboards:ro
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+
+volumes:
+  prometheus_data:
+  grafana_data:

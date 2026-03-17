@@ -1,0 +1,477 @@
+{
+  "execution_id": "d3554873-72fd-4638-aca2-9291ae25a511",
+  "generated_at_utc": "2026-03-17T02:02:12.965421424Z",
+  "benchmark_order": "grpc,http-json",
+  "total_requests_per_protocol_per_run": 25000,
+  "warmup_requests_per_protocol": 100,
+  "benchmark_runs": 5,
+  "concurrency": 64,
+  "http_max_conns_per_host": 64,
+  "request_timeout": "20s",
+  "scenarios": [
+    {
+      "name": "medium-structured",
+      "description": "Payload estruturado medio, sem headers extras.",
+      "json_bytes": 15713,
+      "proto_bytes": 11507,
+      "header_bytes": 0,
+      "blob_bytes": 8192,
+      "item_count": 12,
+      "attribute_count": 24,
+      "counter_count": 96,
+      "note_count": 24,
+      "client_results": {
+        "grpc": {
+          "protocol": "grpc",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "998.402236ms",
+          "median_average": "2.529742ms",
+          "median_min": "64.292µs",
+          "median_max": "19.779208ms",
+          "median_throughput_rps": 25040.008023379465,
+          "median_total_seconds": 0.998402236,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "3.785858252s",
+              "average": "9.660912ms",
+              "min": "1.472375ms",
+              "max": "65.492292ms",
+              "throughput_rps": 6603.522460671356,
+              "started_at_utc": "2026-03-17T02:02:12.965451174Z",
+              "finished_at_utc": "2026-03-17T02:02:16.751309426Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "1.264735417s",
+              "average": "3.222241ms",
+              "min": "132.958µs",
+              "max": "19.193875ms",
+              "throughput_rps": 19766.980242635207,
+              "started_at_utc": "2026-03-17T02:02:20.70005222Z",
+              "finished_at_utc": "2026-03-17T02:02:21.964787637Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "998.402236ms",
+              "average": "2.529742ms",
+              "min": "64.292µs",
+              "max": "49.242042ms",
+              "throughput_rps": 25040.008023379465,
+              "started_at_utc": "2026-03-17T02:02:25.437040514Z",
+              "finished_at_utc": "2026-03-17T02:02:26.43544275Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "910.609001ms",
+              "average": "2.311151ms",
+              "min": "56.416µs",
+              "max": "19.779208ms",
+              "throughput_rps": 27454.154277572314,
+              "started_at_utc": "2026-03-17T02:02:29.892096001Z",
+              "finished_at_utc": "2026-03-17T02:02:30.802705002Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "856.947584ms",
+              "average": "2.172398ms",
+              "min": "62.125µs",
+              "max": "8.945292ms",
+              "throughput_rps": 29173.31289191195,
+              "started_at_utc": "2026-03-17T02:02:34.173346795Z",
+              "finished_at_utc": "2026-03-17T02:02:35.030294379Z"
+            }
+          ]
+        },
+        "http-json": {
+          "protocol": "http-json",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "3.456618502s",
+          "median_average": "8.780031ms",
+          "median_min": "335.792µs",
+          "median_max": "74.873667ms",
+          "median_throughput_rps": 7232.501933764168,
+          "median_total_seconds": 3.456618502,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "3.948698168s",
+              "average": "10.032969ms",
+              "min": "360.333µs",
+              "max": "85.160083ms",
+              "throughput_rps": 6331.200546701294,
+              "started_at_utc": "2026-03-17T02:02:16.751312843Z",
+              "finished_at_utc": "2026-03-17T02:02:20.700011011Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "3.472226168s",
+              "average": "8.807954ms",
+              "min": "335.792µs",
+              "max": "83.51875ms",
+              "throughput_rps": 7199.991818044497,
+              "started_at_utc": "2026-03-17T02:02:21.964790429Z",
+              "finished_at_utc": "2026-03-17T02:02:25.437016597Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "3.456618502s",
+              "average": "8.780031ms",
+              "min": "320.333µs",
+              "max": "74.873667ms",
+              "throughput_rps": 7232.501933764168,
+              "started_at_utc": "2026-03-17T02:02:26.435444958Z",
+              "finished_at_utc": "2026-03-17T02:02:29.89206346Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "3.370612127s",
+              "average": "8.562174ms",
+              "min": "337.542µs",
+              "max": "66.151625ms",
+              "throughput_rps": 7417.050392639259,
+              "started_at_utc": "2026-03-17T02:02:30.80270696Z",
+              "finished_at_utc": "2026-03-17T02:02:34.173319087Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "3.295810918s",
+              "average": "8.37226ms",
+              "min": "316.625µs",
+              "max": "52.643333ms",
+              "throughput_rps": 7585.3866080311345,
+              "started_at_utc": "2026-03-17T02:02:35.030296879Z",
+              "finished_at_utc": "2026-03-17T02:02:38.326107797Z"
+            }
+          ]
+        }
+      },
+      "winner": "grpc",
+      "winner_summary": "gRPC foi 3.46x mais rapido na mediana do tempo total.",
+      "serialization_delta": "protobuf ficou 1.37x menor que JSON (11507 bytes vs 15713 bytes)."
+    },
+    {
+      "name": "large-structured",
+      "description": "Payload estruturado grande, sem headers extras.",
+      "json_bytes": 52870,
+      "proto_bytes": 39203,
+      "header_bytes": 0,
+      "blob_bytes": 32768,
+      "item_count": 24,
+      "attribute_count": 48,
+      "counter_count": 192,
+      "note_count": 48,
+      "client_results": {
+        "grpc": {
+          "protocol": "grpc",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "1.800829126s",
+          "median_average": "4.571226ms",
+          "median_min": "262.584µs",
+          "median_max": "29.27625ms",
+          "median_throughput_rps": 13882.494257259143,
+          "median_total_seconds": 1.800829126,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "1.800829126s",
+              "average": "4.571226ms",
+              "min": "262.584µs",
+              "max": "42.8335ms",
+              "throughput_rps": 13882.494257259143,
+              "started_at_utc": "2026-03-17T02:02:38.326191214Z",
+              "finished_at_utc": "2026-03-17T02:02:40.12702034Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "1.634559626s",
+              "average": "4.136251ms",
+              "min": "201µs",
+              "max": "29.27625ms",
+              "throughput_rps": 15294.639364841376,
+              "started_at_utc": "2026-03-17T02:02:46.528573759Z",
+              "finished_at_utc": "2026-03-17T02:02:48.163133385Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "1.630924945s",
+              "average": "4.142271ms",
+              "min": "237.417µs",
+              "max": "23.446625ms",
+              "throughput_rps": 15328.725013768186,
+              "started_at_utc": "2026-03-17T02:02:54.443568346Z",
+              "finished_at_utc": "2026-03-17T02:02:56.074493291Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "1.818468251s",
+              "average": "4.605072ms",
+              "min": "293.459µs",
+              "max": "28.8835ms",
+              "throughput_rps": 13747.834193009508,
+              "started_at_utc": "2026-03-17T02:03:02.538606461Z",
+              "finished_at_utc": "2026-03-17T02:03:04.357074712Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "2.535890709s",
+              "average": "6.44802ms",
+              "min": "300.667µs",
+              "max": "80.454833ms",
+              "throughput_rps": 9858.469022846204,
+              "started_at_utc": "2026-03-17T02:03:11.232184257Z",
+              "finished_at_utc": "2026-03-17T02:03:13.768074966Z"
+            }
+          ]
+        },
+        "http-json": {
+          "protocol": "http-json",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "6.464085003s",
+          "median_average": "16.444196ms",
+          "median_min": "773.125µs",
+          "median_max": "114.678042ms",
+          "median_throughput_rps": 3867.523398655406,
+          "median_total_seconds": 6.464085003,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "6.401517169s",
+              "average": "16.284047ms",
+              "min": "620.541µs",
+              "max": "114.678042ms",
+              "throughput_rps": 3905.324212995171,
+              "started_at_utc": "2026-03-17T02:02:40.127027465Z",
+              "finished_at_utc": "2026-03-17T02:02:46.528544634Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "6.280409503s",
+              "average": "15.980021ms",
+              "min": "695.125µs",
+              "max": "104.763584ms",
+              "throughput_rps": 3980.6321527375094,
+              "started_at_utc": "2026-03-17T02:02:48.163136677Z",
+              "finished_at_utc": "2026-03-17T02:02:54.44354618Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "6.464085003s",
+              "average": "16.444196ms",
+              "min": "773.125µs",
+              "max": "108.46125ms",
+              "throughput_rps": 3867.523398655406,
+              "started_at_utc": "2026-03-17T02:02:56.074496041Z",
+              "finished_at_utc": "2026-03-17T02:03:02.538581044Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "6.875085837s",
+              "average": "17.489799ms",
+              "min": "795.333µs",
+              "max": "116.450375ms",
+              "throughput_rps": 3636.318235542053,
+              "started_at_utc": "2026-03-17T02:03:04.35707817Z",
+              "finished_at_utc": "2026-03-17T02:03:11.232164007Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "6.86664317s",
+              "average": "17.465011ms",
+              "min": "793.208µs",
+              "max": "150.543041ms",
+              "throughput_rps": 3640.789157244063,
+              "started_at_utc": "2026-03-17T02:03:13.76807905Z",
+              "finished_at_utc": "2026-03-17T02:03:20.63472222Z"
+            }
+          ]
+        }
+      },
+      "winner": "grpc",
+      "winner_summary": "gRPC foi 3.59x mais rapido na mediana do tempo total.",
+      "serialization_delta": "protobuf ficou 1.35x menor que JSON (39203 bytes vs 52870 bytes)."
+    },
+    {
+      "name": "large-structured-headers",
+      "description": "Mesmo payload grande, adicionando headers/metadados extras nos dois protocolos.",
+      "json_bytes": 52878,
+      "proto_bytes": 39211,
+      "header_bytes": 2424,
+      "blob_bytes": 32768,
+      "item_count": 24,
+      "attribute_count": 48,
+      "counter_count": 192,
+      "note_count": 48,
+      "client_results": {
+        "grpc": {
+          "protocol": "grpc",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "2.443821751s",
+          "median_average": "6.187607ms",
+          "median_min": "277.166µs",
+          "median_max": "37.307042ms",
+          "median_throughput_rps": 10229.87866842994,
+          "median_total_seconds": 2.4438217509999998,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "2.976138335s",
+              "average": "7.559001ms",
+              "min": "746.875µs",
+              "max": "37.307042ms",
+              "throughput_rps": 8400.147165874265,
+              "started_at_utc": "2026-03-17T02:03:20.634832303Z",
+              "finished_at_utc": "2026-03-17T02:03:23.610970638Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "2.544251335s",
+              "average": "6.451884ms",
+              "min": "277.166µs",
+              "max": "27.085542ms",
+              "throughput_rps": 9826.073256241407,
+              "started_at_utc": "2026-03-17T02:03:31.254285127Z",
+              "finished_at_utc": "2026-03-17T02:03:33.798536462Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "2.443821751s",
+              "average": "6.187607ms",
+              "min": "325.792µs",
+              "max": "41.487334ms",
+              "throughput_rps": 10229.87866842994,
+              "started_at_utc": "2026-03-17T02:03:40.47851559Z",
+              "finished_at_utc": "2026-03-17T02:03:42.922337341Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "2.294938501s",
+              "average": "5.820864ms",
+              "min": "242.375µs",
+              "max": "26.042958ms",
+              "throughput_rps": 10893.538100958463,
+              "started_at_utc": "2026-03-17T02:03:49.530090219Z",
+              "finished_at_utc": "2026-03-17T02:03:51.82502872Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "2.230188584s",
+              "average": "5.661418ms",
+              "min": "269.25µs",
+              "max": "38.345791ms",
+              "throughput_rps": 11209.814353529127,
+              "started_at_utc": "2026-03-17T02:03:58.693549834Z",
+              "finished_at_utc": "2026-03-17T02:04:00.923738418Z"
+            }
+          ]
+        },
+        "http-json": {
+          "protocol": "http-json",
+          "benchmark_runs": 5,
+          "total_requests_per_run": 25000,
+          "median_total": "6.868494114s",
+          "median_average": "17.485577ms",
+          "median_min": "828.792µs",
+          "median_max": "121.757417ms",
+          "median_throughput_rps": 3639.808025611129,
+          "median_total_seconds": 6.868494114,
+          "runs": [
+            {
+              "run_number": 1,
+              "total_requests": 25000,
+              "total_elapsed": "7.64325499s",
+              "average": "19.439878ms",
+              "min": "817.459µs",
+              "max": "262.496125ms",
+              "throughput_rps": 3270.8577736459897,
+              "started_at_utc": "2026-03-17T02:03:23.610975554Z",
+              "finished_at_utc": "2026-03-17T02:03:31.254230544Z"
+            },
+            {
+              "run_number": 2,
+              "total_requests": 25000,
+              "total_elapsed": "6.679940711s",
+              "average": "16.980132ms",
+              "min": "850.875µs",
+              "max": "101.417167ms",
+              "throughput_rps": 3742.54818741609,
+              "started_at_utc": "2026-03-17T02:03:33.798541795Z",
+              "finished_at_utc": "2026-03-17T02:03:40.478482506Z"
+            },
+            {
+              "run_number": 3,
+              "total_requests": 25000,
+              "total_elapsed": "6.607730128s",
+              "average": "16.807979ms",
+              "min": "796.709µs",
+              "max": "120.828083ms",
+              "throughput_rps": 3783.447494936797,
+              "started_at_utc": "2026-03-17T02:03:42.922341299Z",
+              "finished_at_utc": "2026-03-17T02:03:49.530071427Z"
+            },
+            {
+              "run_number": 4,
+              "total_requests": 25000,
+              "total_elapsed": "6.868494114s",
+              "average": "17.485577ms",
+              "min": "828.792µs",
+              "max": "121.757417ms",
+              "throughput_rps": 3639.808025611129,
+              "started_at_utc": "2026-03-17T02:03:51.825032595Z",
+              "finished_at_utc": "2026-03-17T02:03:58.693526709Z"
+            },
+            {
+              "run_number": 5,
+              "total_requests": 25000,
+              "total_elapsed": "7.891749504s",
+              "average": "20.068341ms",
+              "min": "952.458µs",
+              "max": "150.117375ms",
+              "throughput_rps": 3167.865374759873,
+              "started_at_utc": "2026-03-17T02:04:00.923743335Z",
+              "finished_at_utc": "2026-03-17T02:04:08.815492839Z"
+            }
+          ]
+        }
+      },
+      "winner": "grpc",
+      "winner_summary": "gRPC foi 2.81x mais rapido na mediana do tempo total.",
+      "serialization_delta": "protobuf ficou 1.35x menor que JSON (39211 bytes vs 52878 bytes)."
+    }
+  ],
+  "notes": [
+    "Comparacao principal baseada no round-trip do cliente por mediana.",
+    "O processor apenas dobra o valor e devolve o mesmo payload para reduzir logica de negocio no meio da medicao.",
+    "gRPC usa protobuf precompilado e HTTP usa JSON sobre o mesmo modelo semantico."
+  ]
+}

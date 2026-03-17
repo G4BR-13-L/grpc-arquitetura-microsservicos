@@ -1,0 +1,229 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": false,
+  "graphTooltip": 0,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "displayMode": "lcd",
+        "namePlacement": "top",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "max by (protocol, scenario) (benchmark_client_run_total_seconds)",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Tempo Total Mediano por Cenario",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "displayMode": "lcd",
+        "namePlacement": "top",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "max by (protocol, scenario) (benchmark_client_run_requests_total)",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Requests por Run e Cenario",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 5
+      },
+      "id": 3,
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum by (protocol, scenario) (rate(benchmark_client_requests_total{phase=\"benchmark\",status=\"ok\"}[1m]))",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Taxa de Requests por Cenario",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 5
+      },
+      "id": 4,
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95, sum by (le, protocol, scenario) (rate(benchmark_client_round_trip_seconds_bucket{phase=\"benchmark\"}[1m])))",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "P95 Round Trip por Cenario",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 5,
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "1000 * (sum by (protocol, scenario) (rate(benchmark_processor_processing_seconds_sum{phase=\"benchmark\"}[1m])) / sum by (protocol, scenario) (rate(benchmark_processor_processing_seconds_count{phase=\"benchmark\"}[1m])))",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Media de Processamento por Cenario",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 6,
+      "targets": [
+        {
+          "editorMode": "code",
+          "expr": "sum by (protocol, scenario) (benchmark_client_requests_total{phase=\"benchmark\",status=\"ok\"})",
+          "legendFormat": "{{scenario}} / {{protocol}}",
+          "refId": "A"
+        }
+      ],
+      "title": "Total de Requests Concluidas por Cenario",
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "1s",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": [
+    "benchmark",
+    "grpc",
+    "http"
+  ],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "gRPC vs HTTP Benchmark",
+  "uid": "grpc-http-benchmark",
+  "version": 1
+}

@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package benchmark.v1;
+
+option go_package = "grpcbenchmark/internal/transport;transport";
+
+message Address {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string postal_code = 4;
+  string country = 5;
+}
+
+message Customer {
+  string customer_id = 1;
+  string segment = 2;
+  string email = 3;
+  repeated string phones = 4;
+  Address address = 5;
+}
+
+message Item {
+  string sku = 1;
+  string name = 2;
+  int32 quantity = 3;
+  double unit_price = 4;
+  repeated string tags = 5;
+}
+
+message Attribute {
+  string key = 1;
+  string value = 2;
+}
+
+message Payload {
+  string uuid = 1;
+  int64 valor = 2;
+  string scenario = 3;
+  Customer customer = 4;
+  repeated Item items = 5;
+  repeated Attribute attributes = 6;
+  repeated int64 counters = 7;
+  repeated string notes = 8;
+  bytes blob = 9;
+}
+
+service ProcessorService {
+  rpc Double(Payload) returns (Payload);
+}

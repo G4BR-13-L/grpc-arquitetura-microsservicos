@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: grpc-http-benchmark
+    orgId: 1
+    folder: Benchmark
+    type: file
+    disableDeletion: false
+    allowUiUpdates: false
+    options:
+      path: /etc/grafana/dashboards
