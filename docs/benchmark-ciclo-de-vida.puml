@@ -7,6 +7,10 @@ skinparam componentStyle rectangle
 skinparam packageStyle rectangle
 skinparam ArrowColor #333333
 skinparam DefaultFontName Courier
+'left to right direction
+''top to bottom direction
+'
+'skinparam linetype ortho
 
 package "Contrato" {
   file "proto/benchmark.proto" as Proto
