@@ -1,0 +1,96 @@
+@startuml
+title Ciclo de Vida do Benchmark gRPC vs HTTP JSON
+
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+skinparam ArrowColor #333333
+skinparam DefaultFontName Courier
+
+package "Contrato" {
+  file "proto/benchmark.proto" as Proto
+  file "internal/transport/\nbenchmark.pb.go" as PbGo
+  file "internal/transport/\nbenchmark_grpc.pb.go" as GrpcPbGo
+}
+
+package "Build" {
+  node "processor.Dockerfile" as ProcessorDocker
+  node "benchmarker.Dockerfile" as BenchDocker
+  artifact "processor binary" as ProcessorBin
+  artifact "benchmarker binary" as BenchBin
+}
+
+package "Runtime" {
+  component "processor\n:gRPC 50051\n:HTTP 8080\n/metrics\n/healthz" as Processor
+  component "benchmarker\n:metrics 2112\nwarmup + benchmark\nreports/latest.*" as Benchmarker
+  database "Prometheus" as Prom
+  component "Grafana" as Grafana
+  folder "reports/\nlatest.json\nlatest.md" as Reports
+}
+
+package "Protocolos" {
+  interface "gRPC\nProcessorService.Double" as GRPC
+  interface "HTTP\nPOST /double" as HTTP
+}
+
+Proto --> PbGo : protoc-gen-go
+Proto --> GrpcPbGo : protoc-gen-go-grpc
+
+PbGo --> ProcessorDocker
+PbGo --> BenchDocker
+GrpcPbGo --> ProcessorDocker
+GrpcPbGo --> BenchDocker
+
+ProcessorDocker --> ProcessorBin : go build ./cmd/processor
+BenchDocker --> BenchBin : go build ./cmd/benchmarker
+
+ProcessorBin --> Processor
+BenchBin --> Benchmarker
+
+Processor --> GRPC
+Processor --> HTTP
+
+Benchmarker --> Processor : health check inicial
+Benchmarker --> GRPC : warmup + benchmark
+Benchmarker --> HTTP : warmup + benchmark
+
+Processor --> Prom : benchmark_processor_*
+Benchmarker --> Prom : benchmark_client_*
+Prom --> Grafana : queries
+
+Benchmarker --> Reports : latest.json + latest.md
+
+note right of Benchmarker
+  Carrega configuracao:
+  - SCENARIOS
+  - BENCHMARK_RUNS
+  - CONCURRENCY
+  - TOTAL_REQUESTS
+  - BENCHMARK_ORDER
+  - REQUEST_TIMEOUT
+
+  Fluxo:
+  1. sobe /metrics
+  2. valida processor
+  3. faz warmup
+  4. roda cenarios
+  5. consolida medianas
+  6. grava relatorios
+end note
+
+note bottom of Processor
+  Mesma regra de negocio
+  nos dois protocolos:
+  recebe Payload,
+  dobra valor,
+  devolve resposta.
+end note
+
+note bottom of Grafana
+  Exibe throughput,
+  round-trip do cliente
+  e processamento do servidor.
+end note
+
+@enduml
