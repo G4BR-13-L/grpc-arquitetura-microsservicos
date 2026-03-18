@@ -9,19 +9,19 @@ docker compose up -d --build processor prometheus grafana
 ## Rodar o benchmark
 
 ```bash
-docker compose run --rm benchmarker
+docker compose run --rm --service-ports --use-aliases benchmarker
 ```
 
 ## Rodar um cenario especifico
 
 ```bash
-docker compose run --rm -e SCENARIOS=large-structured benchmarker
+docker compose run --rm --service-ports --use-aliases -e SCENARIOS=large-structured benchmarker
 ```
 
 ## Rodar com mais carga
 
 ```bash
-docker compose run --rm -e TOTAL_REQUESTS=50000 -e CONCURRENCY=128 benchmarker
+docker compose run --rm --service-ports --use-aliases -e TOTAL_REQUESTS=50000 -e CONCURRENCY=128 benchmarker
 ```
 
 ## Rodar apenas um protocolo
@@ -29,13 +29,13 @@ docker compose run --rm -e TOTAL_REQUESTS=50000 -e CONCURRENCY=128 benchmarker
 HTTP JSON:
 
 ```bash
-docker compose run --rm -e BENCHMARK_ORDER=http-json benchmarker
+docker compose run --rm --service-ports --use-aliases -e BENCHMARK_ORDER=http-json benchmarker
 ```
 
 gRPC:
 
 ```bash
-docker compose run --rm -e BENCHMARK_ORDER=grpc benchmarker
+docker compose run --rm --service-ports --use-aliases -e BENCHMARK_ORDER=grpc benchmarker
 ```
 
 ## Relatorio gerado

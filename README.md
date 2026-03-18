@@ -66,7 +66,7 @@ docker compose up -d --build processor prometheus grafana
 Rode o benchmark:
 
 ```bash
-docker compose run --rm benchmarker
+docker compose run --rm --service-ports --use-aliases benchmarker
 ```
 
 ## Relatorios
